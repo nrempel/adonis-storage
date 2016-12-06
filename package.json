@@ -1,0 +1,50 @@
+{
+  "name": "adonis-storage",
+  "version": "0.0.1",
+  "description": "Storage provider for AdonisJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run lint && _mocha test/**/*.spec.js",
+    "lint": "standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nrempel/adonis-storage.git"
+  },
+  "keywords": [
+    "adonisjs",
+    "adonis",
+    "storage",
+    "cloud",
+    "s3"
+  ],
+  "author": "Nicholas Rempel <nbrempel@gmail.com>",
+  "license": "MIT",
+    "devDependencies": {
+    "adonis-fold": "^3.0.3",
+    "chai": "^3.5.0",
+    "co": "^4.6.0",
+    "co-mocha": "^1.1.3",
+    "coveralls": "^2.11.12",
+    "cz-conventional-changelog": "^1.2.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.0.2",
+    "standard": "^8.0.0"
+  },
+  "standard": {
+    "global": [
+      "describe",
+      "it",
+      "use",
+      "context",
+      "before",
+      "after",
+      "beforeEach",
+      "afterEach"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/nrempel/adonis-storage/issues"
+  },
+  "homepage": "https://github.com/nrempel/adonis-storage#readme"
+}
