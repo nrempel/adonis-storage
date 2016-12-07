@@ -20,7 +20,7 @@
   ],
   "author": "Nicholas Rempel <nbrempel@gmail.com>",
   "license": "MIT",
-    "devDependencies": {
+  "devDependencies": {
     "adonis-fold": "^3.0.3",
     "chai": "^3.5.0",
     "co": "^4.6.0",
@@ -30,6 +30,9 @@
     "istanbul": "^0.4.5",
     "mocha": "^3.0.2",
     "standard": "^8.0.0"
+  },
+  "peerDependencies": {
+    "adonis-framework": "^3.0.0"
   },
   "standard": {
     "global": [
@@ -46,5 +49,8 @@
   "bugs": {
     "url": "https://github.com/nrempel/adonis-storage/issues"
   },
-  "homepage": "https://github.com/nrempel/adonis-storage#readme"
+  "homepage": "https://github.com/nrempel/adonis-storage#readme",
+  "dependencies": {
+    "md5-file": "^3.1.1"
+  }
 }
