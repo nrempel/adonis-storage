@@ -11,9 +11,6 @@ class StorageProvider extends ServiceProvider {
       return new StorageManager(Config)
     })
     this.app.manager('Adonis/Addons/Storage', StorageManager)
-    this.app.bind('Adonis/Addons/StorageBaseDriver', function () {
-      return require('../src/drivers/BaseDriver')
-    })
   }
 
 }
