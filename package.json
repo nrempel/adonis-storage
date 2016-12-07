@@ -51,6 +51,7 @@
   },
   "homepage": "https://github.com/nrempel/adonis-storage#readme",
   "dependencies": {
-    "md5-file": "^3.1.1"
+    "md5-file": "^3.1.1",
+    "mz": "^2.6.0"
   }
 }
