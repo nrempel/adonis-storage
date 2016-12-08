@@ -26,6 +26,17 @@ class RuntimeException extends NE.RuntimeException {
     return new this(`Unable to locate ${driver} storage driver`, code || this.defaultErrorCode, 'E_INVALID_STORAGE_DRIVER')
   }
 
+  /**
+   * this exception is raised when a file does not exist
+   *
+   * @param  {String} driver
+   * @param  {Number} [code=500]
+   *
+   * @return {Object}
+   */
+  static fileNotFound (path, code) {
+    return new this(`File located at ${path} does not exist`, code || this.defaultErrorCode, 'E_FILE_NOT_FOUND')
+  }
 }
 
 module.exports = { RuntimeException }

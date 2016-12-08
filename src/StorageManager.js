@@ -92,10 +92,11 @@ class StorageManager {
     const methodsToSpoof = [
       'exists',
       'get',
+      'getStream',
       'put',
-      'url',
-      'size',
-      'lastModified'
+      'putFile',
+      'putFileAs',
+      'url'
     ]
 
     methodsToSpoof.forEach((method) => {

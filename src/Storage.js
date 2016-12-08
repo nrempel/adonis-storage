@@ -1,6 +1,7 @@
 'use strict'
 
 const fs = require('fs')
+const path = require('path')
 const File = require('adonis-framework/src/File')
 const md5File = require('md5-file/promise')
 
@@ -24,12 +25,22 @@ class Storage {
    * Get the contents of a file.
    *
    * @param  string  path
-   * @return string
+   * @return Buffer
    *
    * @throws {FileNotFoundException} If file not found
    */
   * get (path) {
     return yield this.driver.get(path, this.config)
+  }
+
+  /**
+   * Get the contents of a file as a stream.
+   *
+   * @param  string  path
+   * @return ReadableStream
+   */
+  * getStream (path) {
+    return yield this.driver.getStream(path, this.config)
   }
 
   /**
@@ -67,10 +78,9 @@ class Storage {
    * @param  string  name
    * @return string|false
    */
-  * putFileAs (path, file, name) {
+  * putFileAs (filePath, file, name) {
     const stream = fs.createReadStream(file.file.path)
-    const result = yield this.put(`${path}/${name}`, stream)
-    return result ? path : false
+    return yield this.put(path.join(filePath, name), stream)
   }
 
 }
