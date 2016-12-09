@@ -83,6 +83,17 @@ class Storage {
     return yield this.put(path.join(filePath, name), stream)
   }
 
+  /**
+   * Get the URL of the file
+   *
+   * @param  string  path
+   *
+   * @return string|false
+   */
+  * url (path) {
+    return yield this.url(path)
+  }
+
 }
 
 module.exports = Storage
