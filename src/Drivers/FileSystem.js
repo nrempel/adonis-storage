@@ -9,7 +9,6 @@ const fs = require('mz/fs')
 const path = require('path')
 const isStream = require('is-stream')
 const mkdirp = require('mkdirp-promise')
-const promiseStream = require('stream-to-promise')
 
 class FileSystem {
 
@@ -31,7 +30,7 @@ class FileSystem {
   /**
    * Checks if the file exists. Returns a boolean.
    */
-  * exists (path, config) {
+  * exists (path) {
     try {
       yield fs.access(this._fullPath(path))
       return true
@@ -44,7 +43,7 @@ class FileSystem {
   /**
    * Get the contents of the file at the specified path. Returns a Buffer.
    */
-  * get (path, config) {
+  * get (path) {
     try {
       return yield fs.readFile(this._fullPath(path))
     } catch (e) {
@@ -58,14 +57,14 @@ class FileSystem {
   /**
    * Get the contents of the file at the specified path. Returns a Stream.
    */
-  * getStream (path, config) {
+  * getStream (path) {
     return fs.createReadStream(this._fullPath(path))
   }
 
   /**
    * Write contents to a file at `path`.
    */
-  * put (path, contents, config) {
+  * put (path, contents) {
     const fullPath = this._fullPath(path)
     // Create directory if needed
     const pathWithoutFilename = fullPath.slice(0, fullPath.lastIndexOf('/'))

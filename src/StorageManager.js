@@ -35,45 +35,48 @@ class StorageManager {
   }
 
   /**
-   * creates a new driver instance, by finding in shipped
+   * creates a new disk instance, by finding in shipped
    * drivers or looking inside extended drivers.
    *
    * @method _makeDriverInstance
    *
-   * @param  {String}            driver
+   * @param  {String} disk
    * @return {Object}
    *
    * @private
    */
-  _makeDriverInstance (driver) {
-    driver = driver === 'default' ? this.config.get('storage.driver') : driver
+  _makeDriverInstance (disk) {
+    disk = disk === 'default' ? this.config.get('storage.disk') : disk
+    const diskConfig = this.config.get(`storage.disks.${disk}`)
+    const driver = diskConfig.driver
     const driverInstance = Drivers[driver] ? Ioc.make(Drivers[driver]) : extendedDrivers[driver]
     if (!driverInstance) {
       throw CE.RuntimeException.invalidStorageDriver(driver)
     }
+    if (typeof driverInstance.init === 'function') driverInstance.init(diskConfig)
     return driverInstance
   }
 
   /**
-   * returns a new connection for a given driver, if connection
+   * returns a reference to a given disk, if connection
    * was created earlier, it will be returned instead of a
-   * new connection.
+   * new reference.
    *
-   * @param  {String} driver
+   * @param  {String} disk
    * @return {Object}
    *
    * @example
-   * Storage.driver('local')
-   * Storage.driver('s3')
+   * Storage.disk('local')
+   * Storage.disk('s3')
    *
    * @public
    */
-  driver (driver) {
-    if (!this.driversPool[driver]) {
-      const driverInstance = this._makeDriverInstance(driver)
-      this.driversPool[driver] = driverInstance
+  disk (disk) {
+    if (!this.diskPool[disk]) {
+      const driverInstance = this._makeDriverInstance(disk)
+      this.diskPool[disk] = driverInstance
     }
-    return new Storage(this.driversPool[driver])
+    return new Storage(this.diskPool[disk])
   }
 
   /**
@@ -81,7 +84,7 @@ class StorageManager {
    */
   constructor (Config) {
     this.config = Config
-    this.driversPool = {}
+    this.diskPool = {}
 
     /**
      * here we spoof methods on the storage class, which means if
@@ -101,7 +104,7 @@ class StorageManager {
 
     methodsToSpoof.forEach((method) => {
       this[method] = function () {
-        const instance = this.driver('default')
+        const instance = this.disk('default')
         return instance[method].apply(instance, arguments)
       }.bind(this)
     })

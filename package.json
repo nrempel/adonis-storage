@@ -32,7 +32,8 @@
     "standard": "^8.0.0"
   },
   "peerDependencies": {
-    "adonis-framework": "^3.0.0"
+    "adonis-framework": "^3.0.0",
+    "aws-sdk": "^2.6.1"
   },
   "standard": {
     "global": [
