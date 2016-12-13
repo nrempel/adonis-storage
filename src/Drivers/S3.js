@@ -68,7 +68,6 @@ class S3 {
    */
   * put (path, contents) {
     return new Promise((resolve, reject) => {
-      console.log('here', this.disk)
       this.s3.upload({
         Bucket: this.disk.bucket,
         Key: path,

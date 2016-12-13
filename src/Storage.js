@@ -18,7 +18,7 @@ class Storage {
    * @return bool
    */
   * exists (path) {
-    return yield this.driver.exists(path, this.config)
+    return yield this.driver.exists(path)
   }
 
   /**
@@ -30,7 +30,7 @@ class Storage {
    * @throws {FileNotFoundException} If file not found
    */
   * get (path) {
-    return yield this.driver.get(path, this.config)
+    return yield this.driver.get(path)
   }
 
   /**
@@ -40,7 +40,7 @@ class Storage {
    * @return ReadableStream
    */
   * getStream (path) {
-    return yield this.driver.getStream(path, this.config)
+    return yield this.driver.getStream(path)
   }
 
   /**
@@ -55,7 +55,7 @@ class Storage {
     if (contents instanceof File) {
       return yield this.putFile(path, contents)
     }
-    return yield this.driver.put(path, contents, this.config)
+    return yield this.driver.put(path, contents)
   }
 
   /**
