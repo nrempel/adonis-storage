@@ -1,6 +1,6 @@
 {
   "name": "adonis-storage",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Storage provider for AdonisJS",
   "main": "index.js",
   "scripts": {
